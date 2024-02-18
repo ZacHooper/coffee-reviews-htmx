@@ -1,0 +1,46 @@
+<form class="pt-6 grid gap-2 lg:gap-1 text-2xl sm:text-base" hx-post="api/review" hx-swap="outerHTML">
+    <label for="brew-method" class="text-right">Brew Method: </label>
+    <select id="brew-method" name="brew-method">
+        <option value="Pour Over">Pour Over</option>
+        <option value="Aeropress">Aeropress</option>
+        <option value="Cold Brew">Cold Brew</option>
+    </select>
+
+    <label for="coffee">Coffee: </label>
+    <select id="coffee" name="coffee">
+        <option value="Ocean Grind">Ocean Grind</option>
+        <option value="Seven Seeds">Seven Seeds</option>
+        <option value="Inglewood">Inglewood</option>
+    </select>
+
+    <label for="weight">Weight (g): </label>
+    <input id="weight" name="weight" type="number" min="0" max="1000" step="1" />
+
+    <label for="water">Water (g): </label>
+    <input id="water" name="water" type="number" min="0" max="1000" step="5" />
+
+    <label for="grind-size">Grind Size (1-30): </label>
+    <input id="grind-size" name="grind-size" type="number" min="0" max="30" step="1" />
+
+    <label for="temperature">Temperature (°C): </label>
+    <input id="temperature" name="temperature" type="number" min="50" max="120" step="1" />
+
+    <label for="rating">Rating (1-10): </label>
+    <input id="rating" name="rating" type="number" min="0" max="10" step="1" />
+
+    <label for="funkiness">Funkiness (1-10): </label>
+    <input id="funkiness" name="funkiness" type="number" min="0" max="10" step="1" />
+
+    <label for="acidity_bitterness">Acidity/Bitterness (1-10): </label>
+    <input id="acidity_bitterness" name="acidity_bitterness" type="range" value="5" min="1" max="10" step="1"
+        class="p-2" />
+
+    <label for="strength">Strength (1-10): </label>
+    <input id="strength" name="strength" type="range" value="5" min="1" max="10" step="1"
+        class="p-2 w-full h-3 range-lg" />
+
+    <label for="notes">Notes: </label>
+    <textarea id="notes" name="notes" rows="4" cols="50" class="p-2 bg-coffee-lightest rounded-sm"></textarea>
+
+    <button type="submit" class="bg-coffee-dark text-coffee-white rounded-lg p-2">Submit</button>
+</form>
