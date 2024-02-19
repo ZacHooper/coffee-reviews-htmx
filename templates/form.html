@@ -1,40 +1,94 @@
-{% from 'form_elements.html' import input_range, input_field, select_field %}
-
 <form class="pt-6 grid grid-cols-2 gap-x-2" hx-post="api/review" hx-swap="outerHTML">
-    <div class="col-span-2">
-        {{
-        select_field('brew-method', 'Brew Method', [
-        {'value': 'Pour Over', 'text': 'Pour Over', 'selected': true},
-        {'value': 'Aeropress', 'text': 'Aeropress'},
-        {'value': 'Cold Brew', 'text': 'Cold Brew'}
-        ])
-        }}
+    <label class="form-control w-full max-w col-span-2" for="brew-method">
+        <div class="label">
+            <span class="label-text-alt">Brew Method</span>
+        </div>
+        <select id="brew-method" name="brew-method" class="select select-bordered">
+            <option value="Pour Over" selected>Pour Over</option>
+            <option value="Aeropress">Aeropress</option>
+            <option value="Cold Brew">Cold Brew</option>
+        </select>
+    </label>
+
+    <label class="form-control w-full max-w col-span-2" for="coffee">
+        <div class="label">
+            <span class="label-text-alt">Coffee</span>
+        </div>
+        <select id="coffee" name="coffee" class="select select-bordered">
+            <option value="Ocean Grind" selected>Ocean Grind</option>
+            <option value="Seven Seeds">Seven Seeds</option>
+            <option value="Inglewood">Inglewood</option>
+        </select>
+    </label>
+
+    <div id="left-col">
+        <label class="form-control w-full max-w" for="weight">
+            <div class="label">
+                <span class="label-text-alt">Weight (g)</span>
+            </div>
+            <input id="weight" name="weight" type="number" min="0" max="1000" step="1"
+                class="input input-bordered w-full max-w" placeholder="weight (g)" value="30" />
+        </label>
+
+        <label class="form-control w-full max-w" for="water">
+            <div class="label">
+                <span class="label-text-alt">Water (g)</span>
+            </div>
+            <input id="water" name="water" type="number" min="0" max="1000" step="5"
+                class="input input-bordered w-full max-w" placeholder="Water (g)" value="500" />
+        </label>
+
+        <label class="form-control w-full max-w" for="grind-size">
+            <div class="label">
+                <span class="label-text-alt">Grind Size (1-30)</span>
+            </div>
+            <input id="grind-size" name="grind-size" type="number" min="0" max="30" step="1"
+                class="input input-bordered w-full max-w" placeholder="Grind Size (1-30)" value="12" />
+        </label>
+
+        <label class="form-control w-full max-w" for="temperature">
+            <div class="label">
+                <span class="label-text-alt">Temperature (°C)</span>
+            </div>
+            <input id="temperature" name="temperature" type="number" min="50" max="120" step="1"
+                class="input input-bordered w-full max-w" placeholder="Temperature (°C)" value="95" />
+        </label>
     </div>
 
-    <div class="col-span-2">
-        {{
-        select_field('coffee', 'Coffee', [
-        {'value': 'Ocean Grind', 'text': 'Ocean Grind', 'selected': true},
-        {'value':'Seven Seeds', 'text': 'Seven Seeds'},
-        {'value': 'Inglewood', 'text': 'Inglewood'}
-        ])
-        }}
+    <div id="right-col">
+        <label class="form-control w-full max-w" for="rating">
+            <div class="label">
+                <span class="label-text-alt">Rating (1-10)</span>
+            </div>
+            <input id="rating" name="rating" type="number" min="0" max="10" step="1"
+                class="input input-bordered w-full max-w" placeholder="Rating (1-10)" value="5" />
+        </label>
+
+        <label class="form-control w-full max-w" for="funkiness">
+            <div class="label">
+                <span class="label-text-alt">Funkiness (1-10)</span>
+            </div>
+            <input id="funkiness" name="funkiness" type="number" min="0" max="10" step="1"
+                class="input input-bordered w-full max-w" placeholder="Funkiness (1-10)" value="5" />
+        </label>
+
+        <label class="form-control w-full max-w" for="acidity_bitterness">
+            <div class="label">
+                <span class="label-text-alt">Funkiness (1-10)</span>
+            </div>
+            <input id="acidity_bitterness" name="acidity_bitterness" type="number" min="0" max="10" step="1"
+                class="input input-bordered w-full max-w" placeholder="Acidity/Bitterness (1-10)" value="5" />
+        </label>
+
+        <label class="form-control w-full max-w" for="strength">
+            <div class="label">
+                <span class="label-text-alt">Strength (1-10)</span>
+            </div>
+            <input id="strength" name="strength" type="number" min="0" max="10" step="1"
+                class="input input-bordered w-full max-w" placeholder="Strength (1-10)" value="5" />
+        </label>
     </div>
 
-
-
-    <div>
-        {{ input_field('weight', 'weight', 'Weight (g)', 30)}}
-        {{ input_field('water', 'water', 'Water (g)', 500)}}
-        {{ input_field('grind-size', 'grind-size', 'Grind Size (1-30)', 12)}}
-        {{ input_field('temperature', 'temperature', 'Temperature (°C)', 95) }}
-    </div>
-    <div>
-        {{ input_field('rating', 'rating', 'Rating (1-10)', 5) }}
-        {{ input_field('funkiness', 'funkiness', 'Funkiness (1-10)', 5) }}
-        {{ input_field('acidity_bitterness', 'acidity_bitterness', 'Acidity/Bitterness (1-10)', 5) }}
-        {{ input_field('strength', 'strength', 'Strength (1-10)', 5) }}
-    </div>
 
 
     <label class="form-control">
