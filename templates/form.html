@@ -1,46 +1,49 @@
-<form class="pt-6 grid gap-2 lg:gap-1 text-2xl sm:text-base" hx-post="api/review" hx-swap="outerHTML">
-    <label for="brew-method" class="text-right">Brew Method: </label>
-    <select id="brew-method" name="brew-method">
-        <option value="Pour Over">Pour Over</option>
-        <option value="Aeropress">Aeropress</option>
-        <option value="Cold Brew">Cold Brew</option>
-    </select>
+{% from 'form_elements.html' import input_range, input_field, select_field %}
 
-    <label for="coffee">Coffee: </label>
-    <select id="coffee" name="coffee">
-        <option value="Ocean Grind">Ocean Grind</option>
-        <option value="Seven Seeds">Seven Seeds</option>
-        <option value="Inglewood">Inglewood</option>
-    </select>
+<form class="pt-6 grid grid-cols-2 gap-x-2" hx-post="api/review" hx-swap="outerHTML">
+    <div class="col-span-2">
+        {{
+        select_field('brew-method', 'Brew Method', [
+        {'value': 'Pour Over', 'text': 'Pour Over', 'selected': true},
+        {'value': 'Aeropress', 'text': 'Aeropress'},
+        {'value': 'Cold Brew', 'text': 'Cold Brew'}
+        ])
+        }}
+    </div>
 
-    <label for="weight">Weight (g): </label>
-    <input id="weight" name="weight" type="number" min="0" max="1000" step="1" />
+    <div class="col-span-2">
+        {{
+        select_field('coffee', 'Coffee', [
+        {'value': 'Ocean Grind', 'text': 'Ocean Grind', 'selected': true},
+        {'value':'Seven Seeds', 'text': 'Seven Seeds'},
+        {'value': 'Inglewood', 'text': 'Inglewood'}
+        ])
+        }}
+    </div>
 
-    <label for="water">Water (g): </label>
-    <input id="water" name="water" type="number" min="0" max="1000" step="5" />
 
-    <label for="grind-size">Grind Size (1-30): </label>
-    <input id="grind-size" name="grind-size" type="number" min="0" max="30" step="1" />
 
-    <label for="temperature">Temperature (°C): </label>
-    <input id="temperature" name="temperature" type="number" min="50" max="120" step="1" />
+    <div>
+        {{ input_field('weight', 'weight', 'Weight (g)', 30)}}
+        {{ input_field('water', 'water', 'Water (g)', 500)}}
+        {{ input_field('grind-size', 'grind-size', 'Grind Size (1-30)', 12)}}
+        {{ input_field('temperature', 'temperature', 'Temperature (°C)', 95) }}
+    </div>
+    <div>
+        {{ input_field('rating', 'rating', 'Rating (1-10)', 5) }}
+        {{ input_field('funkiness', 'funkiness', 'Funkiness (1-10)', 5) }}
+        {{ input_field('acidity_bitterness', 'acidity_bitterness', 'Acidity/Bitterness (1-10)', 5) }}
+        {{ input_field('strength', 'strength', 'Strength (1-10)', 5) }}
+    </div>
 
-    <label for="rating">Rating (1-10): </label>
-    <input id="rating" name="rating" type="number" min="0" max="10" step="1" />
 
-    <label for="funkiness">Funkiness (1-10): </label>
-    <input id="funkiness" name="funkiness" type="number" min="0" max="10" step="1" />
+    <label class="form-control">
+        <div class="label">
+            <span class="label-text-alt">Notes</span>
+        </div>
+        <textarea class="textarea textarea-bordered h-24" placeholder="" id="notes" name="notes" rows="4"
+            cols="50"></textarea>
+    </label>
 
-    <label for="acidity_bitterness">Acidity/Bitterness (1-10): </label>
-    <input id="acidity_bitterness" name="acidity_bitterness" type="range" value="5" min="1" max="10" step="1"
-        class="p-2" />
-
-    <label for="strength">Strength (1-10): </label>
-    <input id="strength" name="strength" type="range" value="5" min="1" max="10" step="1"
-        class="p-2 w-full h-3 range-lg" />
-
-    <label for="notes">Notes: </label>
-    <textarea id="notes" name="notes" rows="4" cols="50" class="p-2 bg-coffee-lightest rounded-sm"></textarea>
-
-    <button type="submit" class="bg-coffee-dark text-coffee-white rounded-lg p-2">Submit</button>
+    <button class="btn btn-primary mt-8">Submit</button>
 </form>

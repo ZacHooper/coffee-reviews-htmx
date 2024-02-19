@@ -1,0 +1,37 @@
+{% macro input_range(id, name, min, max, step, value, label) %}
+<label for="{{ id }}" class="form-control w-full max-w-xs">
+    <div class="label">
+        <span class="label-text-alt">{{ label }}</span>
+    </div>
+    <input id="{{ id }}" name="{{ name }}" type="range" value="{{ value }}" min="{{ min }}" max="{{ max }}"
+        step="{{ step }}" class="range" />
+    <div class="w-full flex justify-between text-xs px-2">
+        {% for i in range(min, max+1) %}
+        <span>{{ i }}</span>
+        {% endfor %}
+    </div>
+</label>
+{% endmacro %}
+
+{% macro input_field(id, name, label, value) %}
+<label class="form-control w-full max-w" for="{{ id }}">
+    <div class="label">
+        <span class="label-text-alt">{{ label }}</span>
+    </div>
+    <input id="{{ id }}" name="{{ name }}" type="text" class=" input input-bordered w-full max-w"
+        placeholder="{{ label }}" value="{{ value }}" />
+</label>
+{% endmacro %}
+
+{% macro select_field(id, name, options) %}
+<label class="form-control w-full max-w" for="{{ id }}">
+    <div class="label">
+        <span class="label-text-alt">{{ name }}</span>
+    </div>
+    <select id="{{ id }}" name="{{ name }}" class="select select-bordered">
+        {% for option in options %}
+        <option value="{{ option.value }}" {% if option.selected %}selected{% endif %}>{{ option.text }}</option>
+        {% endfor %}
+    </select>
+</label>
+{% endmacro %}
