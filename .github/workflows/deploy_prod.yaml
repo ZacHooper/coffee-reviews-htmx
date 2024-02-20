@@ -1,0 +1,81 @@
+name: Deploy Prod
+
+permissions:
+  id-token: write
+  contents: write
+
+on:
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+    inputs:
+      version_increment:
+        description: 'Version increment'
+        required: true
+        default: 'minor'
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+
+env:
+  SAM_TEMPLATE: template.yaml
+  STACK_NAME: prod-coffee-review-htmx
+  REGION: ap-southeast-2
+
+jobs:
+  build-prod-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: aws-actions/setup-sam@v2
+        with:
+          use-installer: true
+  
+      - name: Assume the sam-role
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::373083822301:role/github-sam
+          aws-region: ${{ env.REGION }}
+        
+      - name: Build resources
+        run: sam build --use-container
+      
+      - name: Deploy to production account
+        run: |
+          sam deploy --stack-name ${STACK_NAME}  --parameter-overrides=Environment=prod  --capabilities CAPABILITY_IAM  --region ${REGION}  --resolve-image-repos --resolve-s3 --no-confirm-changeset --no-fail-on-empty-changeset
+      
+      - name: Create release
+        uses: actions/github-script@v6
+        env:
+          VERSION_INCREMENT: ${{ github.event.inputs.version_increment }}
+        with:
+          script: |
+            async function generateTagName() {
+              const {VERSION_INCREMENT} = process.env;
+              const releases = await github.rest.repos.listReleases({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+              });
+              const versions = releases.data
+                .map(({tag_name}) => tag_name.replace(/^v/, ''))
+                .filter(t => /^\d+\.\d+.\d+$/.test(t))
+                .sort((a, b) => a.localeCompare(b, undefined, {numeric: true}))
+                .reverse();
+              if (versions.length === 0) return 'v1.0.0';
+              const [major, minor, patch] = versions[0].split('.').map(Number);
+              return VERSION_INCREMENT === 'major'
+                ? `v${major + 1}.0.0`
+                : VERSION_INCREMENT === 'minor'
+                ? `v${major}.${minor + 1}.0`
+                : `v${major}.${minor}.${patch + 1}`;
+            }
+            await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: await generateTagName(),
+              target_commitish: context.sha,
+            });
