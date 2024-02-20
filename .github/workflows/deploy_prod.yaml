@@ -22,7 +22,7 @@ on:
 
 env:
   SAM_TEMPLATE: template.yaml
-  STACK_NAME: prod-coffee-review-htmx
+  STACK_NAME: coffee-reviews-htmx
   REGION: ap-southeast-2
 
 jobs:
