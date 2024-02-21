@@ -15,11 +15,15 @@
             <div class="label">
                 <span class="label-text-alt">Coffee</span>
             </div>
-            <select id="coffee" name="coffee" class="select select-bordered">
-                <option value="Ocean Grind" selected>Ocean Grind</option>
-                <option value="Seven Seeds">Seven Seeds</option>
-                <option value="Inglewood">Inglewood</option>
-            </select>
+            <div class="join">
+                <select id="coffee" name="coffee" class="select select-bordered join-item w-full">
+                    <option value="Ocean Grind" selected>Ocean Grind</option>
+                    <option value="Seven Seeds">Seven Seeds</option>
+                    <option value="Inglewood">Inglewood</option>
+                </select>
+                <button hx-get="/new-coffee" class="btn btn-primary join-item">+</button>
+            </div>
+
         </label>
 
         <div id="left-col">

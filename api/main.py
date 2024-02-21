@@ -26,7 +26,8 @@ async def home(request: Request):
 async def review(request: Request):
     # Get the form data
     form = await request.form()
-    res = s3.upload_review(dict(form), BUCKET)
+    # res = s3.upload_review(dict(form), BUCKET)
+    res = True
     if res:
         return templates.TemplateResponse(request=request, name="success.html")
     else:
