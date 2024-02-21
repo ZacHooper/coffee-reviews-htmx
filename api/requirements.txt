@@ -2,6 +2,7 @@ fastapi
 jinja2
 mangum
 python-multipart
+boto3
 
 # Testing
 # uvicorn

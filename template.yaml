@@ -15,6 +15,9 @@ Resources:
       CodeUri: api
       Handler: main.handler
       Runtime: python3.11
+      Policies:
+        - S3CrudPolicy:
+            BucketName: coffee-review
       Events:
         Api:
           Type: HttpApi
