@@ -1,0 +1,66 @@
+<div class="flex flex-col justify-center h-screen">
+    <div class="collapse collapse-plus">
+        <input type="radio" name="my-accordion-3" />
+        <div class="collapse-title text-xl font-medium">
+            Add new coffee to pantry
+        </div>
+        <div class="collapse-content">
+            <p>hello</p>
+        </div>
+    </div>
+    <div class="collapse collapse-plus">
+        <input type="radio" name="my-accordion-3" checked="checked" />
+        <div class="collapse-title text-xl font-medium">
+            Coffee's in the pantry
+        </div>
+        <div class="collapse-content p-0">
+            <div class="overflow-x-auto max-w-sm">
+                <table class="table table-auto divide-red-500">
+                    <!-- head -->
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Roast Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- row 1 -->
+                        <tr>
+                            <td>Brazil, Ocean Grind</td>
+                            <td>Jan, 19th</td>
+                            <td class="join">
+                                <button class="btn btn-primary join-item">Refill</button>
+                                <button class="btn btn-secondary join-item">Empty</button>
+                            </td>
+                        </tr>
+                        <!-- row 2 -->
+                        <tr>
+                            <td>Brazil, Inglewoods</td>
+                            <td>Jan, 19th</td>
+                            <td class="join">
+                                <button class="btn btn-primary join-item">Refill</button>
+                                <button class="btn btn-secondary join-item">Empty</button>
+                            </td>
+                        </tr>
+                        <!-- row 3 -->
+                        <tr>
+                            <td>Brazil, Seven Seeds</td>
+                            <td>Jan, 19th</td>
+                            <td class="join">
+                                <button class="btn btn-primary join-item">Refill</button>
+                                <button class="btn btn-secondary join-item">Empty</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-grow items-end m-2">
+        <button class="btn btn-primary w-full" hx-get="/" hx-target="body" hx-push-url="true">Make a Review</button>
+    </div>
+
+
+
+</div>

@@ -39,4 +39,9 @@ async def review(request: Request):
     return templates.TemplateResponse(request=request, name="form.html")
 
 
+@app.get("/api/pantry", response_class=HTMLResponse)
+async def new_coffee(request: Request):
+    return templates.TemplateResponse(request=request, name="pantry.html")
+
+
 handler = Mangum(app)
