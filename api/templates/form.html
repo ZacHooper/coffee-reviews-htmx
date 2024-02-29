@@ -22,7 +22,7 @@
                     <option value="Inglewood">Inglewood</option> -->
 
                     {% for coffee in coffees %}
-                    <option value="{{ coffee.name }}">{{ coffee.name }} - {{coffee.roastery}}, {{ coffee.roast_date }}
+                    <option value="{{ coffee.uuid }}">{{ coffee.name }} - {{coffee.roastery}}, {{ coffee.roast_date }}
                     </option>
                     {% endfor %}
                 </select>
