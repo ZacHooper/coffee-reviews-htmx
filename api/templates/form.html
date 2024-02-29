@@ -15,11 +15,26 @@
             <div class="label">
                 <span class="label-text-alt">Coffee</span>
             </div>
-            <select id="coffee" name="coffee" class="select select-bordered">
-                <option value="Ocean Grind" selected>Ocean Grind</option>
-                <option value="Seven Seeds">Seven Seeds</option>
-                <option value="Inglewood">Inglewood</option>
-            </select>
+            <div class="join">
+                <select id="coffee" name="coffee" class="select select-bordered join-item w-full">
+                    <!-- <option value="Ocean Grind" selected>Ocean Grind</option>
+                    <option value="Seven Seeds">Seven Seeds</option>
+                    <option value="Inglewood">Inglewood</option> -->
+
+                    {% for coffee in coffees %}
+                    <option value="{{ coffee.uuid }}">{{ coffee.name }} - {{coffee.roastery}}, {{ coffee.roast_date }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <button hx-get="api/pantry" hx-target="body" hx-push-url="true" class="btn btn-primary join-item">
+                    <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="text-neutral w-1/2">
+                        <path d="M4 12H20M12 4V20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+
         </label>
 
         <div id="left-col">
