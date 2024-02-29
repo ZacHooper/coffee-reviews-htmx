@@ -16,9 +16,9 @@ BUCKET = "coffee-review"
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    id = "123"
+    coffees = s3.get_active_coffees(BUCKET)
     return templates.TemplateResponse(
-        request=request, name="index.html", context={"id": id}
+        request=request, name="index.html", context={"coffees": coffees}
     )
 
 
