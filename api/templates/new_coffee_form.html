@@ -1,0 +1,43 @@
+<form hx-post="/api/coffees" class="grid gap-y-2">
+    <label class="form-control w-full max-w" for="name">
+        <input id="name" name="name" type="text" class="input input-bordered w-full max-w" placeholder="name" />
+    </label>
+    <label class="form-control w-full max-w" for="roastery">
+        <input id="roastery" name="roastery" type="text" class="input input-bordered w-full max-w"
+            placeholder="Roastery" />
+    </label>
+    <label class="form-control w-full max-w" for="roast_date">
+        <input id="roast_date" name="roast_date" type="date" class="input input-bordered w-full max-w"
+            placeholder="Roast Date" />
+    </label>
+    <label class="form-control w-full max-w" for="roast_level">
+        <input id="roast_level" name="roast_level" type="text" class="input input-bordered w-full max-w"
+            placeholder="Roast Level (light, medium, dark)" />
+    </label>
+    <label class="form-control w-full max-w" for="origin">
+        <input id="origin" name="origin" type="text" class="input input-bordered w-full max-w" placeholder="Origin" />
+    </label>
+    <label class="form-control w-full max-w" for="region">
+        <input id="region" name="region" type="text" class="input input-bordered w-full max-w" placeholder="Region" />
+    </label>
+    <label class="form-control w-full max-w" for="farm">
+        <input id="farm" name="farm" type="text" class="input input-bordered w-full max-w" placeholder="Farm" />
+    </label>
+    <label class="form-control w-full max-w" for="altitude">
+        <input id="altitude" name="altitude" type="number" class="input input-bordered w-full max-w"
+            placeholder="Altitude" />
+    </label>
+    <label class="form-control w-full max-w" for="variety">
+        <input id="variety" name="variety" type="text" class="input input-bordered w-full max-w"
+            placeholder="Variety" />
+    </label>
+    <label class="form-control w-full max-w" for="processing-method">
+        <input id="processing-method" name="processing-method" type="text" class="input input-bordered w-full max-w"
+            placeholder="Processing Method" />
+    </label>
+    <label class="form-control w-full max-w" for="tasting-notes">
+        <input id="tasting-notes" name="tasting-notes" type="text" class="input input-bordered w-full max-w"
+            placeholder="Tasting Notes. Separate with commas" />
+    </label>
+    <button class="btn btn-primary w-full">Add</button>
+</form>

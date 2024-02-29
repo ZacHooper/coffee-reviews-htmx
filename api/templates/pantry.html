@@ -4,16 +4,16 @@
         <div class="collapse-title text-xl font-medium">
             Add new coffee to pantry
         </div>
-        <div class="collapse-content">
-            <p>hello</p>
+        <div class="collapse-content overflow-y-auto">
+            {% include 'new_coffee_form.html' %}
         </div>
     </div>
-    <div class="collapse collapse-plus">
+    <div class=" collapse collapse-plus">
         <input type="radio" name="my-accordion-3" checked="checked" />
         <div class="collapse-title text-xl font-medium">
             Coffee's in the pantry
         </div>
-        <div class="collapse-content p-0">
+        <div class="collapse-content p-0 overflow-y-auto">
             <div class="overflow-x-auto max-w-sm">
                 <table class="table table-auto divide-red-500">
                     <!-- head -->
@@ -26,39 +26,25 @@
                     </thead>
                     <tbody>
                         <!-- row 1 -->
+                        {% for coffee in coffees %}
                         <tr>
-                            <td>Brazil, Ocean Grind</td>
-                            <td>Jan, 19th</td>
+                            <td class="text-xs">{{ coffee.name }}, {{ coffee.roastery }}</td>
+                            <td>{{ coffee.roast_date }}</td>
                             <td class="join">
                                 <button class="btn btn-primary join-item">Refill</button>
-                                <button class="btn btn-secondary join-item">Empty</button>
+                                <button class="btn btn-secondary join-item" hx-delete="/api/coffees/{{ coffee.uuid }}"
+                                    hx-target="body" hx-swap="true">Empty</button>
                             </td>
                         </tr>
-                        <!-- row 2 -->
-                        <tr>
-                            <td>Brazil, Inglewoods</td>
-                            <td>Jan, 19th</td>
-                            <td class="join">
-                                <button class="btn btn-primary join-item">Refill</button>
-                                <button class="btn btn-secondary join-item">Empty</button>
-                            </td>
-                        </tr>
-                        <!-- row 3 -->
-                        <tr>
-                            <td>Brazil, Seven Seeds</td>
-                            <td>Jan, 19th</td>
-                            <td class="join">
-                                <button class="btn btn-primary join-item">Refill</button>
-                                <button class="btn btn-secondary join-item">Empty</button>
-                            </td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
     <div class="flex flex-grow items-end m-2">
-        <button class="btn btn-primary w-full" hx-get="/" hx-target="body" hx-push-url="true">Make a Review</button>
+        <button class="btn btn-primary w-full" hx-get="/" hx-target="body" hx-push-url="true">Make a
+            Review</button>
     </div>
 
 

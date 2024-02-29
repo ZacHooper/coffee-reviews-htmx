@@ -22,7 +22,8 @@
                     <option value="Inglewood">Inglewood</option> -->
 
                     {% for coffee in coffees %}
-                    <option value="{{ coffee.nickname }}">{{ coffee.nickname }}, {{ coffee.roast_date }}</option>
+                    <option value="{{ coffee.name }}">{{ coffee.name }} - {{coffee.roastery}}, {{ coffee.roast_date }}
+                    </option>
                     {% endfor %}
                 </select>
                 <button hx-get="api/pantry" hx-target="body" hx-push-url="true" class="btn btn-primary join-item">
